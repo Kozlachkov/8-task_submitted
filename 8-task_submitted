@@ -1,0 +1,30 @@
+import csv
+
+list1 =[]
+list_of_students=[]
+list_of_cabinet=[]
+with open("students.csv", encoding='utf-8') as r_file:
+    read_students = csv.reader(r_file, delimiter = ",")
+    counter_students = 0
+    for row in read_students:
+        if counter_students != 0:
+            list1.append(row[0]); list1.append(row[1]); list1.append(row[2]); list1.append(row[3]); list1.append(row[4].replace(' ',''));
+            list_of_students.append(list1); list1=[]         
+        counter_students += 1
+with open("cabinet.csv", encoding='utf-8') as r_file:
+    read_cabinet = csv.reader(r_file, delimiter = ",")
+    counter_cabinet = 0
+    for row in read_cabinet:
+        if counter_cabinet != 0:
+            list1.append(row[0]); list1.append(row[1]); list1.append(row[2]); list1.append(row[3]);
+            list_of_cabinet.append(list1); list1=[]         
+        counter_cabinet += 1       
+class_number=input('введите номер класса, чтобы получить как рассажены ученики: ')
+print_list=[]
+row_in_print_list=[]
+for i in range(counter_students-1):
+    if list_of_students[i][4]==class_number:
+        print('в кабинете ученик {} {} сидит на {} ряду и {} месте'.format(list_of_students[i][0], list_of_students[i][1], list_of_cabinet[i][2], list_of_cabinet[i][3]))
+
+
+
